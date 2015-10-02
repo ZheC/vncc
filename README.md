@@ -7,7 +7,7 @@ This package is a ROS wrapper for the VNCC (Vectorized Normalized Cross Correlat
 * Ubuntu 14.04
 * ROS Indigo
 * [catkin_tools](https://catkin-tools.readthedocs.org/en/latest/)
-* OpenCV 2.4.0 or higher
+* OpenCV 2.4.0 or higher (to be compiled with GPU support)
 * CUDA 6.0 or higher
 * NVIDIA GPU (with 8GB memory or higher
 
@@ -47,7 +47,7 @@ mkdir build
 cd build
 ```
 
-For this next step, please observe the instructions [here](http://docs.opencv.org/doc/tutorials/introduction/linux_install/linux_install.html#building-opencv-from-source-using-cmake-using-the-command-line). Please add the `CMAKE_INSTALL_PREFIX` flag with appropriate options to the command below when you execute it.
+For this next step, please observe the instructions [here](http://docs.opencv.org/doc/tutorials/introduction/linux_install/linux_install.html#building-opencv-from-source-using-cmake-using-the-command-line). Please add the `CMAKE_INSTALL_PREFIX` flag with appropriate options to the command below when you execute it. A good place would be in an empty `/home/<name>/local` directory.
 
 ```
 cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D WITH_TBB=ON  -D WITH_V4L=ON -D WITH_OPENGL=ON -D CUDA_ARCH_BIN=3.0 -D CUDA_ARCH_PTX=3.0 -D WITH_CUDA=ON -D WITH_VTK=ON -D WITH_CUBLAS=ON ..
