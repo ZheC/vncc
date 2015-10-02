@@ -1,0 +1,7 @@
+<launch>
+	<node name="vncc" pkg="vncc" type="vncc_estimator" output="screen" args="/home/herb_home/shared/vncc_ws/src/vncc/">
+		<remap from="/vncc/depth_image" to="/head/kinect2/hd/image_depth_rect"/>
+		<remap from="/vncc/color_image" to="/head/kinect2/hd/image_color_rect"/>
+		<remap from="/vncc/camera_info" to="/head/kinect2/hd/camera_info"/>
+	</node>
+</launch>
