@@ -14,8 +14,10 @@ def MsgToPose(msg):
 
 	#Get translation and rotation (from Euler angles)
 	pose = transformations.euler_matrix(msg.roll,msg.pitch,msg.yaw) 
-        pose[0:3,3] = numpy.array([msg.pt.x,msg.pt.y,msg.pt.z])
 
+        pose[0,3] = msg.pt.x
+        pose[1,3] = msg.pt.y
+        pose[2,3] = msg.pt.z
     
 	return pose
 
@@ -43,10 +45,12 @@ class VnccDetector(object):
 
 		#Get relative transform between frames
 		offset_to_world = numpy.matrix(transformations.quaternion_matrix(r))
-		offset_to_world[0:3,3] = t
+		offset_to_world[0,3] = t[0]
+                offset_to_world[1,3] = t[1]
+                offset_to_world[2,3] = t[2]
 
 		#Compose with pose to get pose in world frame
-		result = [numpy.array(numpy.dot(offset_to_local, pose))]
+		result = numpy.array(numpy.dot(offset_to_world, pose))
 
 		return result
 
@@ -61,10 +65,9 @@ class VnccDetector(object):
 
 		if detect_resp.ok == False:
 			return None
-
 		#Assumes one instance of object
                 result = MsgToPose(detect_resp.detections[0])
-		if (self.detection_frame is not None and self.world_frame is not None):
-			result = self.LocalToWorld(result)
+		#if (self.detection_frame is not None and self.world_frame is not None):
+		    #	result = self.LocalToWorld(result)
 
 		return result

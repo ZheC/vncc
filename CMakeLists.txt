@@ -3,9 +3,9 @@ project(vncc)
 
 
 find_package( CUDA )
-#find_package( OpenCV REQUIRED CONFIG PATHS /home/shushman/local NO_DEFAULT_PATH)
+find_package( OpenCV REQUIRED CONFIG PATHS ~/local NO_DEFAULT_PATH)
 
-find_package( OpenCV REQUIRED)
+#find_package( OpenCV REQUIRED)
 
 set(GENCODE -gencode=arch=compute_30,code=sm_30)
 set(GENCODE ${GENCODE} -gencode=arch=compute_35,code=compute_35)
@@ -16,6 +16,7 @@ set(CUDA_NVCC_FLAGS_RELEASE "-O2")
 
 
 include_directories(${OpenCV_INCLUDE_DIRS})
+message("Shushman: ${OpenCV_INCLUDE_DIRS}")
 include_directories( /usr/local/cuda/include )
 
 
