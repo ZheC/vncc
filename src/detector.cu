@@ -261,8 +261,10 @@
 		  	
 		  	float p_3d[3];
 		  	p_3d[2] =depth_image.at<float>(rows, cols)/1000;
+            //cout<<"Depth reading at bowl is "<<p_3d[2]<<endl;
 		  	p_3d[0]=(cols-intrinsics.at<float>(0,2))*(p_3d[2]/intrinsics.at<float>(0,0));
-		  	p_3d[1]=(rows-intrinsics.at<float>(1,1))*(p_3d[2]/intrinsics.at<float>(1,0));
+		  	//cout<<"Intrinsics val "<<intrinsics.at<float>(1,0)<<endl;
+            p_3d[1]=(rows-intrinsics.at<float>(1,2))*(p_3d[2]/intrinsics.at<float>(1,1));
 		  	
 		  	position= Vec3f(p_3d[0], p_3d[1], p_3d[2]);
 		  	//cout << position[m][2] << " " << output.scale << endl;

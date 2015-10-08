@@ -22,6 +22,7 @@ using namespace std;
 //Global variables needed across function calls
 cv::Mat currentDepthImage;
 cv::Mat currentColorImage;
+cv::Mat goodDepthImage;
 sensor_msgs::CameraInfo currentCameraInfo;
 bool has_color_image_;
 bool has_depth_image_;
@@ -41,9 +42,9 @@ void cameraInfoCallback(const sensor_msgs::CameraInfoConstPtr& camera_info)
 void depthImageCallback(const sensor_msgs::ImageConstPtr& msg)
 {
 	cv_bridge::CvImagePtr subscribed_ptr;
-	try
+    try
 	{
-		subscribed_ptr = cv_bridge::toCvCopy(msg, "32FC1");
+		subscribed_ptr = cv_bridge::toCvCopy(msg,"32FC1");
 	}
 	catch (cv_bridge::Exception& e)
 	{
@@ -51,8 +52,9 @@ void depthImageCallback(const sensor_msgs::ImageConstPtr& msg)
         return;
 	}
 	currentDepthImage = subscribed_ptr->image;
-	has_depth_image_ = true;
-}
+    
+    has_depth_image_ = true;
+
 
 //Callback for color image
 void colorImageCallback(const sensor_msgs::ImageConstPtr& msg)
@@ -84,7 +86,7 @@ bool GetDetectionsService(vncc::GetDetections::Request &req,
                            0, 0, 1);
 
     cv::Mat intrinsics(intrinsics_mat);    
-
+    cout<<intrinsics<<endl;
 	//Detect plate
 	Vec3f position;
 	Vec3f angle;
