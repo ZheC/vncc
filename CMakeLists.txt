@@ -29,22 +29,7 @@ find_package(catkin REQUIRED COMPONENTS
   cmake_modules
   message_generation
   geometry_msgs
-)
-
-
-
-add_message_files(
-    DIRECTORY
-    msg
-    FILES
-    Detection.msg
-)
-
-add_service_files(
-    DIRECTORY
-    srv
-    FILES
-    GetDetections.srv
+  vncc_msgs
 )
 
 catkin_python_setup()
