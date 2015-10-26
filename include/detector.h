@@ -45,6 +45,6 @@ void visualize_alignment(Mat &depth, float position[][3], int angle[][3], map<fl
 void convert2Dto3D( Mat depth_image, Mat intrinsics, map<float, Output, greater<float> > max_map, string object_name, cv::Vec3f& position, cv::Vec3f& angle);
 		
 // the controller of the program
-bool DetectObject(Mat color_image, Mat depth_image, Mat intrinsics, string training_file_path, string object_name, cv::Vec3f& position, cv::Vec3f& angle);
+bool DetectObject(Mat color_image, Mat depth_image, Mat intrinsics, string training_file_path, string object_name, cv::Vec3f& position, cv::Vec3f& angle, float confidence);
 
 #endif    	   	
